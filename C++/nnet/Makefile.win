@@ -1,0 +1,34 @@
+# Project: ÏîÄ¿1
+# Makefile created by Dev-C++ 5.9.2
+
+CPP      = g++.exe
+CC       = gcc.exe
+WINDRES  = windres.exe
+OBJ      = main.o ../util/util.o ../minfunc/lbfgs.o
+LINKOBJ  = main.o ../util/util.o ../minfunc/lbfgs.o
+LIBS     = -L"E:/Dev-Cpp/MinGW64/lib" -L"E:/Dev-Cpp/MinGW64/x86_64-w64-mingw32/lib" -static-libgcc
+INCS     = -I"E:/Dev-Cpp/MinGW64/include" -I"E:/Dev-Cpp/MinGW64/x86_64-w64-mingw32/include" -I"E:/Dev-Cpp/MinGW64/lib/gcc/x86_64-w64-mingw32/4.8.1/include" -I"E:/project/lib/eigen-eigen-bdd17ee3b1b3/Eigen" -I"E:/project/ML/C++/minfunc/include" -I"E:/project/ML/C++/util/include"
+CXXINCS  = -I"E:/Dev-Cpp/MinGW64/include" -I"E:/Dev-Cpp/MinGW64/x86_64-w64-mingw32/include" -I"E:/Dev-Cpp/MinGW64/lib/gcc/x86_64-w64-mingw32/4.8.1/include" -I"E:/Dev-Cpp/MinGW64/lib/gcc/x86_64-w64-mingw32/4.8.1/include/c++" -I"E:/project/lib/eigen-eigen-bdd17ee3b1b3/Eigen" -I"E:/project/ML/C++/minfunc/include" -I"E:/project/ML/C++/util/include"
+BIN      = nnet.exe
+CXXFLAGS = $(CXXINCS) 
+CFLAGS   = $(INCS) 
+RM       = rm.exe -f
+
+.PHONY: all all-before all-after clean clean-custom
+
+all: all-before $(BIN) all-after
+
+clean: clean-custom
+	${RM} $(OBJ) $(BIN)
+
+$(BIN): $(OBJ)
+	$(CPP) $(LINKOBJ) -o $(BIN) $(LIBS)
+
+main.o: main.cpp
+	$(CPP) -c main.cpp -o main.o $(CXXFLAGS)
+
+../util/util.o: ../util/util.cpp
+	$(CPP) -c ../util/util.cpp -o ../util/util.o $(CXXFLAGS)
+
+../minfunc/lbfgs.o: ../minfunc/lbfgs.cpp
+	$(CPP) -c ../minfunc/lbfgs.cpp -o ../minfunc/lbfgs.o $(CXXFLAGS)
